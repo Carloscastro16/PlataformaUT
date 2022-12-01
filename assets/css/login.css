@@ -29,6 +29,13 @@ padding: 0;
 color: #fff;
 text-align: center;
 }
+.login-box p{
+    color: var(--blanco);
+}
+.login-box a{
+    text-decoration: none;
+    color: var(--gris-claro);
+}
 .login-box .user-box input{
     position: relative;
     width: 100%;
@@ -69,6 +76,7 @@ text-align: center;
     transition: .5s;
     letter-spacing: 4px;
     margin: auto;
+    border: none;
 }
 #submit:hover{
     background: #8F7CEC;

@@ -27,7 +27,8 @@ include ('conec.php');
             $_SESSION['cod_usuario']= $idUsuario;
             $_SESSION['correo']= $email;
             $_SESSION['rolUsuario'] = $rolUsuario;
-            $_SESSION['nombre_usuario'] = $nombre_usuario;
+            $_SESSION['nombre'] = $nombre_usuario;
+            $_SESSION['matricula'] = $fila["matricula"];
             $respuesta = 1;
             echo $respuesta;
         } else {
@@ -47,9 +48,9 @@ include ('conec.php');
             header('Location: ../Asesor.php');
             
         }else if ($respuesta==1 && $rolUsuario == 3){
-            header('Location: ../Alumno.php');
+            header('Location: ../Tutor.php');
         }else if ($respuesta==1 && $rolUsuario == 4){
-            header('Location: ../tutor.php');
+            header('Location: ../Alumno.php');
         }else{
             /* header('Location: ../Paginas/LogIn.php'); */
             echo "<script>window.location.href = '../Log-in.html';</script>";

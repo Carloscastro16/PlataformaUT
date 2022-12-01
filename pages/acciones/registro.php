@@ -18,13 +18,13 @@ $matricula= $_POST['matricula'];
 
     if($validacionEmail['contador'] != 0){
         echo "<script type='text/javascript'> alert('El correo ya existe en la base de datos');
-        window.location('../log-in.html');
+        window.location.href = '../registro.html';
         </script>";
     }else {
         $insertarUsuario= "INSERT INTO usuario(fk_rol_usuario, nombre_usuario,ape_paterno, ape_materno, correo_usuario, contra_usuario, matricula) 
         value (4,'$nomUser','$apellPa','$apellMa','$correo','$encryptPass', '$matricula')";
         $resultados=mysqli_query($conexion,$insertarUsuario);
-        header ('location: ../Paginas/LogIn.php');
+        header ('location: ../log-in.html');
     }
     //redireccionamiento//
 ?>
