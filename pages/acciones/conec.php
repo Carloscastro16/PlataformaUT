@@ -3,7 +3,7 @@
 $hostname = 'localhost'; // 127.0.0.1
 $username = 'root';
 $password = '';
-$database = 'asesoria';
+$database = 'db_tutorias';
 // Query para la conexión a la db
 $conexion = mysqli_connect($hostname, $username, $password, $database);
 

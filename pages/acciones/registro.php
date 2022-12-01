@@ -1,13 +1,12 @@
 <?php
 include('conec.php');
-$agregar = $_POST['agregar'];
 
-    $matricula= $_POST['matricula'];
-    $correo= $_POST['correo'];
-    $pass= $_POST['password'];
-    $nomUser= $_POST['nombre'];
-    $apellPa= $_POST['apellPa'];
-    $apellMa= $_POST['apellMa'];
+$correo= $_POST['correo'];
+$pass= $_POST['password'];
+$nomUser= $_POST['nombre'];
+$apellPa= $_POST['apellPa'];
+$apellMa= $_POST['apellMa'];
+$matricula= $_POST['matricula'];
     $encryptPass = password_hash($pass, PASSWORD_DEFAULT);
     
     //consulta mysql//
@@ -17,22 +16,15 @@ $agregar = $_POST['agregar'];
     $validacion = mysqli_query($conexion, $consultaEmail);
     $validacionEmail = mysqli_fetch_array($validacion);
 
-    if($validacionEmail['contador'] == 0){
-        $insertarUsuario= "INSERT INTO usuario() 
-        value ('$nomUser','$apellPa','$apellMa','$correo','$encryptPass')";
+    if($validacionEmail['contador'] != 0){
+        echo "<script type='text/javascript'> alert('El correo ya existe en la base de datos');
+        window.location('../log-in.html');
+        </script>";
+    }else {
+        $insertarUsuario= "INSERT INTO usuario(fk_rol_usuario, nombre_usuario,ape_paterno, ape_materno, correo_usuario, contra_usuario, matricula) 
+        value (4,'$nomUser','$apellPa','$apellMa','$correo','$encryptPass', '$matricula')";
         $resultados=mysqli_query($conexion,$insertarUsuario);
         header ('location: ../Paginas/LogIn.php');
-        if(empty($rfc)){
-        }else{
-            $insertarUsuario = "INSERT INTO usuario(fk_rol_usuario, nombre_usuario ,ape_paterno ,ape_materno , correo_usuario, nombre_empresa, contra_usuario, tel_empresa, rfc) 
-            VALUE (3,'$nomUser','$apellPa','$apellMa','$correo','$nombreEmpresa','$encryptPass',$telefono,'$rfc')";
-            $resultados=mysqli_query($conexion,$insertarUsuario);
-            header ('location: ../Paginas/LogIn.php');
-        }
-    }else {
-        
-        header ('location: ../Paginas/LogIn.php');
-        echo "<script type='text/javascript'> alert('El correo ya existe en la base de datos');</script>";
     }
     //redireccionamiento//
 ?>
