@@ -43,7 +43,7 @@ if($cod == null || $cod == '' || $rolUsuario != 2) {
         <!--Sliderbar-->
         <div class="bg-dark centradoHorizontal" id="sidebar-wrapper">
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase">
-                <img src="../assets/img/logofinish.jpg" alt="">
+                <img src="../assets/img/logofinish.png" alt="">
             </div>
             <div class="list-group list-group-flush my-3">
                 <a href="Asesor.php" class="list-group-item list-group-item-action bg-transparent second-text active">
@@ -78,7 +78,7 @@ if($cod == null || $cod == '' || $rolUsuario != 2) {
                             </a>
                             <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
                                 <li class='dropdown-link'>
-                                    <a href='../index.html'>Home</a>
+                                    <a href='../index.php'>Home</a>
                                 </li>
                                 <li class='dropdown-link'>
                                     <a href='Asesor.php'>Dashboard</a>

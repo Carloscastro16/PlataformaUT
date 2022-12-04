@@ -27,17 +27,14 @@ include('conec.php');
             </script>";
             break;
         case false:
+                $codServicio = $_POST['codServicio'];
                 $registrarPaquete= "UPDATE paquete SET 
-                fk_cod_empresa =$codusuario,
-                nom_paquete = '$nombrePaquete',
-                fk_cod_tipo_servicio= $tipoServicio,
-                fk_cod_ciudad= '$locacion',
-                direc_evento='$direccion',
-                disponibilidad_evento='$disponibilidad',
-                precio_paquete=$precioEvento,
-                cant_personas=$cantidadPersonas,
-                descrip_paquete='$Descripcion'
-                WHERE cod_paquete=$codPaquete";
+                fk_cod_tutor =$tutor,
+                nom_servicio = '$nombreServicio',
+                tipo_servicio = $tipoServicio,
+                disponibilidad = '$disponibilidad',
+                descripcion ='$Descripcion'
+                WHERE cod_servicio=$codServicio";
             
             $resultados=mysqli_query($conexion,$registrarPaquete);
             header('location: ../Paginas/altapaquetes.php');

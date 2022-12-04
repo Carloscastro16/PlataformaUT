@@ -7,9 +7,9 @@
     $nombre = $_SESSION['nombre'];
     $matricula = $_SESSION['matricula'];
     $rolUsuario = $_SESSION['rolUsuario'];
-    if($cod == null || $cod == '' || $rolUsuario != 4) {
+    if($cod == null || $cod == '' || $rolUsuario != 3) {
         echo "ERROR: 412 Usted no tiene acceso";
-        header('Location: ../index.html');
+        header('Location: ../index.php');
         die();
     }
     $consulta1= "SELECT * FROM usuario WHERE matricula = '$matricula'";
@@ -29,8 +29,12 @@
     <script src="https://kit.fontawesome.com/7e5b2d153f.js" crossorigin="anonymous"></script>
     <script defer src="../assets/js/index.js"></script>
     <!-- CSS only -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,500;0,700;0,900;1,100;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="icon" href="../assets/img/favicon.svg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/style.css?v=1.6">
+    <link rel="stylesheet" href="../assets/css/style.css?v=1.8">
     <title>Alumnos</title>
 </head>
 
@@ -38,7 +42,7 @@
     <!--Navbar-->
     <header class="header">
         <nav class="nav">
-            <a href="index.html" class="logo nav-link"><img src="../assets/img/logofinish.png"></a>
+            <a href="../index.php" class="logo nav-link"><img src="../assets/img/logofinish.png"></a>
             <button class="nav-toggle" aria-label="abrir menu">
                 <i class="fas fa-bars"></i>
             </button>
@@ -86,12 +90,12 @@
                     $desc = $fila2["descripcion"];
                     
                     echo "<div class='col-sm-4 col-lg-4 col-md-4'>
-                            <div class='card' style='width: 18rem;'>
+                            <div class='card' style='width: 100%; height: 100%;'>
                                 <img src='../assets/img/hero.jpg' class='card-img-top'>
                                 <div class='card-body'>
                                     <h5 class='card-title'>$nomServicio</h5>
                                     <p class='card-text'>$desc</p>
-                                    <a href='#' class='btn btn-primary'> Go somewhere</a>
+                                    <a target='_self' href='servicio.php?idServicio=<?$cod' name='id' class='btn btn-primary'>Saber mas</a>
                                 </div>
                             </div>
                         </div>";
@@ -114,12 +118,13 @@
                     $desc = $fila3["descripcion"];
                     
                     echo "<div class='col-sm-4 col-lg-4 col-md-4'>
-                            <div class='card' style='width: 18rem;'>
+                            <div class='card' style='width: 100%; height: 100%;'>
                                 <img src='../assets/img/hero.jpg' class='card-img-top'>
                                 <div class='card-body'>
                                     <h5 class='card-title'>$nomServicio</h5>
                                     <p class='card-text'>$desc</p>
-                                    <a href='#' class='btn btn-primary'> Go somewhere</a>
+                                    <a target='_self' href='servicio.php?idServicio=<?$cod' name='id' class='btn btn-primary'>Saber mas</a>
+                                    <a target='_self' href='acciones/agregarServicio.php?idServicio=<?$cod' name='id' class='btn btn-primary'>Agregar</a> 
                                 </div>
                             </div>
                         </div>";

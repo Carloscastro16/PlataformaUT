@@ -67,7 +67,8 @@ button:hover{
 .nav-link{
     color: white;
     text-decoration: none;
-    font-size: .8rem;
+    font-size: .9rem;
+    font-weight: 500;
 }
 .logo{
     display:flex;
@@ -201,8 +202,12 @@ button:hover{
 }
 #orgullo .container{
     text-align: center;
-    padding: 200px 12px;
 
+}
+#orgullo img{
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 15px 25px rgba(143, 124, 236, 0.7);
 }
 #nuestros-cursos{
     justify-content: center;
@@ -244,6 +249,7 @@ footer{
     left: 0;
     margin-top: 2rem;
 }
+
 footer p{
     margin: 0;
     padding: 12px;
@@ -282,8 +288,8 @@ footer .container{
         background-image: url(../img/logo.png);
         background-size: cover;
         background-position: center center;
-        height: 500px;
-        width: 500px;
+        height: 400px;
+        width: 400px;
     }
     #nuestros-cursos .programas{
         display: flex;
@@ -376,4 +382,8 @@ footer .container{
 .tablita th{
     font-size: .8rem;
     padding-left: .2rem;
+}
+
+.titulos{
+    color: var(--gris-claro);
 }

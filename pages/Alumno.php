@@ -9,7 +9,7 @@
     $rolUsuario = $_SESSION['rolUsuario'];
     if($cod == null || $cod == '' || $rolUsuario != 4) {
         echo "ERROR: 412 Usted no tiene acceso";
-        header('Location: ../index.html');
+        header('Location: ../index.php');
         die();
     }
     $consulta1= "SELECT * FROM usuario WHERE matricula = '$matricula'";
@@ -30,7 +30,7 @@
     <script defer src="../assets/js/index.js"></script>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/style.css?v=1.6">
+    <link rel="stylesheet" href="../assets/css/style.css?v=1.8">
     <title>Alumnos</title>
 </head>
 
@@ -75,23 +75,24 @@
                 </div>
                 <?php
                 include('acciones/conec.php');
-                $consulta2 = "SELECT tipo_servicio.descripcion, tipo_servicio.nom_servicio FROM tutoria 
+                $consulta2 = "SELECT tipo_servicio.cod_servicio ,tipo_servicio.descripcion, tipo_servicio.nom_servicio FROM tutoria 
                 INNER JOIN tipo_servicio ON tipo_servicio.cod_servicio = tutoria.fk_cod_servicio
                 WHERE tutoria.fk_cod_alumno = $cod";
                 $resultado2 = mysqli_query($conexion, $consulta2);
 
                 while($fila2=mysqli_fetch_array($resultado2)){
                     /* $imagen =$fila["imagen"]; */
+                    $cod = $fila2["cod_servicio"];
                     $nomServicio = $fila2["nom_servicio"];
                     $desc = $fila2["descripcion"];
                     
                     echo "<div class='col-sm-4 col-lg-4 col-md-4'>
-                            <div class='card' style='width: 18rem;'>
+                            <div class='card' style='width: 100%; height: 100%;'>
                                 <img src='../assets/img/hero.jpg' class='card-img-top'>
                                 <div class='card-body'>
                                     <h5 class='card-title'>$nomServicio</h5>
                                     <p class='card-text'>$desc</p>
-                                    <a href='#' class='btn btn-primary'> Go somewhere</a>
+                                    <a target='_self' href='servicio.php?idServicio=$cod' name='id' class='btn btn-primary'>Saber mas</a>
                                 </div>
                             </div>
                         </div>";
@@ -110,16 +111,17 @@
 
                 while($fila3=mysqli_fetch_array($resultado3)){
                     /* $imagen =$fila["imagen"]; */
+                    $cod = $fila3['cod_servicio'];
                     $nomServicio = $fila3["nom_servicio"];
                     $desc = $fila3["descripcion"];
                     
                     echo "<div class='col-sm-4 col-lg-4 col-md-4'>
-                            <div class='card' style='width: 18rem;'>
+                            <div class='card' style='width: 100%; height: 100%;'>
                                 <img src='../assets/img/hero.jpg' class='card-img-top'>
                                 <div class='card-body'>
                                     <h5 class='card-title'>$nomServicio</h5>
                                     <p class='card-text'>$desc</p>
-                                    <a href='#' class='btn btn-primary'> Go somewhere</a>
+                                    <a target='_self' href='servicio.php?idServicio=$cod' name='id' class='btn btn-primary'>Saber mas</a>
                                 </div>
                             </div>
                         </div>";

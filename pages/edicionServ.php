@@ -11,6 +11,16 @@
         header('Location: ../index.html');
         die();
     }
+
+    $codServ = $_GET['idServicio'];
+    $consServ = "SELECT * FROM tipo_servicio WHERE cod_servicio = '$codServ'";
+    $result = mysqli_query($conexion, $consServ);
+    $filaServ = mysqli_fetch_array($result);
+    $nombreServ = $filaServ['nom_servicio'];
+    $codTutor = $filaServ['fk_cod_tutor'];
+    $tipoServ = $filaServ['tipo_servicio'];
+    $descripcion = $filaServ['descripcion'];
+
     switch($rolUsuario){
         case 1: 
             $linkPerfil = "Administrador.php";
@@ -103,23 +113,13 @@
                 <div class="container">
                     <form action="acciones/registroServicio.php" method="POST" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col-sm-12 col-md-4">
-                                <div class="imaperfil input-group">
-                                    <div class="custom-file">
-                                        <label class="form-title" for="">Sube una imagen</label>
-                                        <!--<img src="../Images/imagenPaquete.jpg" alt="" />v -->
-                                        <input type="file" accept="image/*"  name="txtnom" class="custom-file-input form-control" aria-describedby="inputGroupFileAddon01"/>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="col-sm-12 col-md-6">
                                 <label class="form-title" for="">Nombre del Servicio</label>
-                                <input class="form-control" type="text" name="nombreServicio" required>
+                                <input class="form-control" type="text" name="nombreServicio" value ="<?php echo $nombreServ ?>" required>
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-title" for="">Tipo de servicio</label>
-                                <select class="form-select" aria-label="Default select example" name="tipoServicio">
-                                    <option selected>Ingrese el servicio</option>
+                                <select class="form-select" aria-label="Default select example" name="tipoServicio" value="<?php echo $tipoServ ?>">
                                     <option value="tutoria">Tutoria</option>
                                     <option value="taller">Taller</option>
                                     <option value="Curso">Curso</option>
@@ -127,7 +127,7 @@
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <label class="form-title" for="">Tutor del servicio</label>
-                                <select class="form-select" aria-label="Default select example" name="tutor">
+                                <select class="form-select" aria-label="Default select example" name="tutor" value="<?php echo $codTutor ?>">
                                     <option selected>Ingrese el tutor</option>
                                     <?php
                                         include('acciones/conec.php');
@@ -150,10 +150,11 @@
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <label class="form-title" for="">Descripcion</label>
-                                <textarea name="descripcion" class="form-control" id="" rows="3"></textarea>
+                                <textarea name="descripcion" class="form-control" id="" rows="3" value="<?php echo $descripcion ?>"></textarea>
                             </div>
                             <div class="col-md-2">
-                                <input type="submit" name="btnAgregar" value="Añadir paquete" class="mt-4 btn btn-primary">
+                                <input type="hidden" name="" value="<?php echo $codServ ?>">
+                                <input type="submit" name="btnEditar" value="editar paquete" class="mt-4 btn btn-primary">
                             </div>
                             
                         </div>
@@ -171,7 +172,6 @@
                                         <th># tutor</th>
                                         <th>Tipo</th>
                                         <th>Descripcion</th>
-                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -179,7 +179,7 @@
                                     <tr>
                                             <?php
                                             include('acciones/conec.php');
-                                            $consulta2="SELECT * FROM tipo_servicio";
+                                            $consulta2="SELECT * FROM tipo_servicio WHERE cod_servicio = '$codServ'";
                                             $resultado2=mysqli_query($conexion,$consulta2); 
                                             while($fila2=mysqli_fetch_array($resultado2)){
                                                 $imagen =$fila2["img"];
@@ -192,12 +192,7 @@
                                         <td> <?php echo $fila2["fk_cod_tutor"] ?> </td>
                                         <td> <?php echo $fila2["tipo_servicio"] ?> </td>
                                         <td> <?php echo $fila2["descripcion"] ?> </td>
-                                        <td>  
-                                            <a target="_self" href="acciones/eliminarServicio.php?idServicio=<?php echo $fila2["cod_servicio"]?>" name="id"><ion-icon class="trash" name="trash-outline"></ion-icon></a> 
-                                            <a target="_self" href="edicionServ.php?idServicio=<?php echo $fila2["cod_servicio"]?>" name="id"><ion-icon class="edit" name="create-outline"></ion-icon></a>  
-                                            <!-- <button type="button" name="btnEliminar"  id="submit" class="btn btn-primary"><ion-icon class="trash" name="trash-outline"></ion-icon></button>
-                                            <button type="button" name="btnModificar"  class="btn btn-primary"><ion-icon class="edit" name="create-outline"></ion-icon></button> -->
-                                        </td>
+                                        
                                     </tr>
                                     <?php } ?>
                                 </tbody>
